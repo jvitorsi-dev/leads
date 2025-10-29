@@ -1,0 +1,290 @@
+
+<mat-sidenav-container class="sidenav-container" >
+  <mat-sidenav #sidenav class="sidenav" mode="over" position="end">
+    <div class="subcontainer-sidenav">
+      <div class="subcontainer-opcoes">
+        <button *ngFor="let opcoes of opcoesMenu" class="opcoes-sidenav" (click)="focusContainer(opcoes); sidenav.close();"> 
+          {{opcoes}}
+        </button>
+      </div>
+      <div class="container-close" (click)="sidenav.close()">
+        <mat-icon>close</mat-icon>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <!--<div class="example-sidenav-content">
+    <button type="button" mat-button (click)="sidenav.toggle()">
+      Toggle sidenav
+    </button>
+  </div>-->
+  <nav>
+    <header>
+      <div class="header">
+        <div>
+          <img src="logo-menu.png" alt="Logo Porto" class="img-logo" loading="lazy" />
+        </div>
+        <div class="menu-container">
+          <div class="container-menu-simular">
+            <div class="subcontainer-botao-contato2">
+              <button type="button" mat-button class="botao-simular-2"
+              (click)="focusContainer('contato')">SIMULAR PLANO</button>
+            </div>
+          </div>
+          <div class="container-menu-whatsapp" (click)="msgWhatsapp()">
+            <img src="whatsapp-2.webp" alt="whatsapp" class="img-contato-2" loading="lazy" />
+          </div>
+        </div>
+        <div class="container-button-sidemenu">
+          <button type="button" class="button-sidemenu" mat-button (click)="sidenav.open()">
+            <mat-icon>dehaze</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="bottom-header">
+        <div class="bottom-header-opcoes">
+          <button *ngFor="let opcoes of opcoesMenu" class="opcoes-bh" (click)="focusContainer(opcoes)"> 
+            {{opcoes}}
+          </button>
+        </div>
+      </div>
+    </header>
+  </nav>
+
+  <div class="container-foto" #containerFoto tabindex="-1">
+    <div class="container-titulo">
+      <h1 class="titulo">PORTO SEGURO SAÚDE</h1>
+      <p class="subtitulo">
+        Planos de saúde corporativos com a confiança e excelência Porto Seguro.
+        <br />
+        Entre em contato para saber mais.
+      
+    </div>
+  </div>
+
+  <div class="container-contato-1" tabindex="-1" (click)="msgWhatsapp()">
+    <div class="container-whatsapp">
+      <img src="whatsapp.webp" alt="whatsapp" class="img-contato-1" loading="lazy" />
+    </div>
+  </div>
+
+  <div class="container-contato-2">
+    <div class="subcontainer-contato-2">
+      <div class="subcontainer-titulo-contato2">
+        FAÇA UMA <b>SIMULAÇÃO GRATUITA</b> DO SEU PLANO PORTO. <br/>
+          SEGURO SAÚDE PRONTO EM INSTANTES.
+      </div>
+      <div class="subcontainer-botao-contato2">
+        <button type="button" mat-button class="botao-simular"
+        (click)="focusContainer('contato')">SIMULAR AGORA</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-info-1" #containerInfo1>
+    <div class="container-doutor-paciente">
+      <img src="doutor-pacientes.webp" alt="Consulta" class="doutor-paciente" loading="lazy" />
+    </div>
+    <div class="subcontainer-info-1">
+      <div class="titulo-sc-info-1">
+        Porto Seguro Saúde
+      </div>
+      <div class="texto-sc-info-1">
+        Fundada em 1945, a Porto Seguro é uma das maiores seguradoras do Brasil,
+        com 28 empresas consolidando o grupo e atendendo mais de 10 milhões de clientes.
+        No setor de saúde, a Porto Seguro oferece uma extensa rede de hospitais, clínicas,
+        laboratórios e médicos credenciados, além das Unidades Médicas DaVita.
+      </div>
+      <div class="container-button-info-1">
+        <button type="button" class="botao-contato-info-1"
+         mat-flat-button
+         (click)="focusContainer('contato')">
+          Entre em contato agora
+        </button>
+        <div>
+          <img src="doctors.svg" alt="Doutores" class="doctor-svg" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-info-2">
+    <div *ngFor="let diferencial of diferenciais" class="container-diferenciais">
+      <mat-icon>{{diferencial.icone}}</mat-icon>
+      <h4>{{diferencial.titulo}}</h4>
+      {{diferencial.descricao}} <div *ngIf="diferencial.titulo == 'Alô Saúde' || diferencial.titulo == 'Psicologia online'"><br /></div>
+      <img [src]="diferencial.imagem" alt="Imagem Diferenciais" class="img-diferenciais" />
+    </div>
+  </div>
+
+  <div class="container-base-form">
+    <div>
+      <form [formGroup]="formulario" #form (ngSubmit)="onSubmit()" class="container-form" id="form" tabindex="-1">
+
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="nome" placeholder="Digite seu nome">
+          <mat-error *ngIf="formulario.get('nome')?.invalid && formulario.get('nome')?.touched">
+            O nome deve ter pelo menos 3 caracteres.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Telefone</mat-label>
+          <input matInput formControlName="telefone" placeholder="Digite seu telefone">
+          <mat-error *ngIf="formulario.get('telefone')?.invalid && formulario.get('telefone')?.touched">
+            Informe um telefone válido com DDD.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" placeholder="Digite seu email">
+          <mat-error *ngIf="formulario.get('email')?.invalid && formulario.get('email')?.touched">
+            Informe um e-mail válido.
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-flat-button color="primary" type="submit" [disabled]="formulario.invalid">
+          Enviar
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="container-info-3">
+    <div class="container-foto-info3">
+      <img src="meeting.webp" alt="Reuniao" class="img-info-3" />
+    </div>        
+    <div class="subcontainer-info-3">  
+      <div class="sc-titulo-info-3">
+        <h1 class="titulo-info-3">O plano de saúde perfeito para a sua empresa está na Porto Saúde!</h1>    
+      </div>
+      <div class="sc-texto-info3">
+        <div class="texto1-info-3">
+          <h4>📢 Atendimento exclusivo e personalizado</h4>
+          Seu time e seus prestadores de serviço merecem o melhor! 
+          Tenha suporte ágil e especializado sempre que precisar.
+          
+          <h4>🚑 Cobertura completa em todo o Brasil</h4>
+          Com a Porto Saúde, sua empresa conta com atendimento de 
+          urgência e emergência de qualidade em qualquer lugar do país.
+        </div>
+        
+        <div class="texto2-info-3">
+          <h4>🧠 Psicólogos online para mais bem-estar</h4>
+          Ofereça aos seus colaboradores suporte emocional de onde estiverem, 
+          garantindo mais produtividade e qualidade de vida.
+          
+          <h4>💰 Planos flexíveis: com ou sem reembolso</h4>
+          Escolha a opção que melhor atende às necessidades do seu negócio 
+          e cuide da sua equipe com segurança e economia.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-info-4">
+    <div class="subcontainer-info-4">
+      <div class="sc-titulo-info-4">
+        <h1 class="titulo-info-4">Porto Seguro Saúde Empresarial: Mais Benefícios para Sua Empresa!</h1>         
+      </div>
+      <div class="sc-texto-info4">
+        <div class="texto1-info-4">
+          <h4>🌟 Planos personalizados e uma ampla rede credenciada!</h4>
+          Com a Porto Seguro Saúde, sua empresa tem acesso a serviços diferenciados
+           e uma rede completa de atendimento. Não importa o tamanho do seu negócio, há sempre um plano sob medida para você!
+          <h4>💙 Mais saúde, mais produtividade!</h4>
+          Além da cobertura excepcional, a Porto Seguro se destaca com programas
+          de promoção à saúde, incentivando hábitos saudáveis e melhorando a qualidade
+           de vida dos colaboradores. Equipe mais saudável significa mais engajamento e melhores resultados!
+        </div>
+        <div class="texto2-info-4">
+          <h4>🤝 Acompanhamento completo e suporte de qualidade!</h4>
+          Com um pós-venda eficiente, garantimos uma experiência sem complicações
+           para sua empresa e seus funcionários, proporcionando o melhor uso do plano de saúde.
+          <h4>🔹 Invista no bem-estar da sua equipe e veja a diferença na produtividade!</h4>
+        </div>
+      </div>
+    </div>
+    <div class="container-foto-info4">
+      <img src="handshake.webp" alt="Aperto de mão" class="img-info-4" />
+    </div>
+  </div>
+
+  <div class="container-info-5" #containerInfo5 tabindex="-1">
+    <div class="subcontainer-info-5">
+      <div class="texto1-info-5">
+        <h1>Quem pode contratar o Plano de Saúde Porto Empresarial?</h1>
+      </div>
+      
+      <div class="texto2-info-5">
+        <h4>Para quem é o plano?</h4>
+        Sócios, diretores e colaboradores com vínculo empregatício
+        podem garantir um plano exclusivo, desde que tenham até 58 anos e 11 meses.
+        <h4>E para quem tem mais de 59 anos?</h4>
+        Não se preocupe! Para pessoas entre 59 e 71 anos,
+        basta consultar nossa tabela de adesão especial.
+        <h4>Inclusão de dependentes?</h4>
+        Cônjuge ou companheiro(a) também podem ser incluídos até 58 anos e 11 meses.
+        Para dependentes acima dessa idade, consulte as condições especiais da tabela.
+        Filhos naturais ou adotivos? Podem ser incluídos até 45 anos e 11 meses.
+        Filhos inválidos podem ser incluídos sem limite de idade.
+        Importante: As condições e valores podem sofrer ajustes conforme
+        regras da Porto Seguro. A adesão e contratação são confirmadas no momento da assinatura do contrato.
+      </div>
+    </div>
+  </div>
+
+  <div class="container-emp-simular">
+    <button type="button" mat-button class="botao-emp-simular" (click)="focusContainer('contato')">Simular agora</button>
+  </div>
+
+  <div class="container-rede-credenciada" #containerRedeCredenciada tabindex="-1">
+    <div class="titulo-rede-credenciada">
+      <h1>
+        Rede Credenciada de Alto Padrão
+      </h1>
+      
+        A Porto Saúde oferece uma extensa rede de hospitais,
+        clínicas e laboratórios de referência, assegurando atendimento
+        de excelência em diversas especialidades médicas.
+      
+    </div><br/><br/>
+    <div class="subcontainer-rede-credenciada">
+      <div class="redes">
+        <p *ngFor="let hospital of redeCredenciada1">
+          {{hospital}}
+        </p>
+      </div>
+      <div class="redes">
+        <p *ngFor="let hospital of redeCredenciada2">
+          {{hospital}}
+        </p>
+      </div>
+      <div class="redes">
+        <p *ngFor="let hospital of redeCredenciada3">
+          {{hospital}}
+        </p>
+      </div>
+    </div><br/><br/>
+    <div class="texto-rede-credenciada">
+      Entre em contato para saber mais sobre a rede de atendimento disponível, conforme o plano e a região desejada.
+    </div>
+  </div>
+
+  <div class="container-info-6" tabindex="-1">
+    <div class="descricao-info-6">
+      
+        Site exclusivo para vendas de planos Porto Seguro Saúde – Revenda Autorizada.<br/>
+        Informamos que a Porto Seguro não possui departamento de vendas próprio,
+        utilizando-se de corretoras devidamente autorizadas a comercializar, ofertar,
+        intermediar e vender produtos Porto Seguro. Five Insurance Corretora de seguros LTDA,
+        CNPJ 54.504.970.0001-53, Rua Vicente Celestino 1268 Jd. Silvia Maria - Mauá.
+        Se você já é cliente Porto Seguro, ligue 0800 940 1892 e fale diretamente no atendimento ao cliente.
+      
+    </div>
+  </div>
+
+</mat-sidenav-container>
