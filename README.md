@@ -1,59 +1,57 @@
-# Leads
+<div align="center">
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.5.
+# 🎯 leads
 
-## Development server
+**Formulário de captura de leads para corretora de seguros — projeto real de cliente**
 
-To start a local development server, run:
+[![Angular](https://img.shields.io/badge/Angular-19-dd0031)](https://angular.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-```bash
-ng serve
-```
+</div>
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 💡 O problema
 
-## Code scaffolding
+Corretoras de seguros perdem prospects quando a captação depende só de telefone ou planilha. Este projeto — feito para um **cliente real** do meu trabalho como freelancer — é uma página de captura de leads: rápida, responsiva e pensada para **converter visitantes em contatos**.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## ✨ O que ele faz
 
-```bash
-ng generate component component-name
-```
+- Formulário de captação com **validação reativa** (campos, formatos e feedback imediato ao usuário)
+- Layout **responsivo mobile-first** — a maioria do tráfego de captação vem do celular
+- **Sem framework de UI**: CSS próprio, bundle enxuto e carregamento rápido (crítico em páginas de conversão)
+- **Pronto para IIS**: `Web.config` incluído com rewrite de URLs para SPA
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🧰 Stack
 
-```bash
-ng generate --help
-```
+`Angular 19` · `TypeScript` · `CSS` · `RxJS` · deploy em **IIS**
 
-## Building
-
-To build the project run:
+## 🚀 Como rodar
 
 ```bash
-ng build
+npm install
+npm start        # ng serve → http://localhost:4200
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 📦 Build e deploy
 
 ```bash
-ng test
+npm run build    # gera dist/
 ```
 
-## Running end-to-end tests
+O `Web.config` na raiz já resolve o roteamento SPA no IIS — a build é publicada diretamente no servidor de produção do cliente.
 
-For end-to-end (e2e) testing, run:
+## 🧠 Decisões técnicas
 
-```bash
-ng e2e
-```
+- **Zero dependência de UI kit** — cada KB a mais na primeira carga derruba a conversão.
+- **Formulário reativo do Angular** — validação centralizada e testável, longe da bagunça de validação por template.
+- **Deploy em IIS** — o cliente já tinha infraestrutura Windows; o `Web.config` faz a SPA funcionar com URLs limpas.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## 🗺️ Roadmap
 
-## Additional Resources
+- [ ] Screenshots/GIF do formulário em produção
+- [ ] Testes automatizados (unit + e2e)
+- [ ] Score de Lighthouse documentado
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 📄 Licença
+
+Distribuído sob a licença [MIT](LICENSE).
